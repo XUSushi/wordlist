@@ -1,0 +1,78 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Mar 19 18:28:15 2018
+
+@author: 许逸文
+"""
+
+"""
+语料在电脑中的存储路径为：D:\corpara
+"""
+
+"""
+要解决这个问题需要4步：
+1.读取文件夹中的文件，把文件中的内容读到python中，放入列表
+2.分词，统计词频，把单词作为key，频次value作为放入字典里
+3.对频次进行升序和降序排序，分别放到两个列表中，列表的每个项是个元祖
+4.打印
+齐活
+
+"""
+
+
+#第一步：读取文件夹中的文件，把文件中的内容读到python中，放入列表
+import os  
+path = "D:/corpara" #文件夹目录  
+files= os.listdir(path) #得到文件夹下的所有文件名称  
+s = []  
+for file in files: #遍历文件夹  
+     if not os.path.isdir(file): #判断是否是文件夹，不是文件夹才打开  
+          f = open(path+"/"+file,encoding ='utf-8'); #打开文件，更改编码避免出错
+          iter_f = iter(f); #创建迭代器  
+          str = ""  
+          for line in iter_f: #遍历文件，一行行遍历，读取文本  
+              str = str + line  
+          s.append(str) #每个文件的文本存到list中  
+#print(s) 
+
+#第二步：分词，统计词频，把单词作为key，频次value 作为放入字典里
+a = {} 
+cut=str.split()  #分词
+#print(cut)
+for j in cut:
+        if cut.count(j)>=1:
+            a[j] = cut.count(j)     #字典a，，key是cut内的项，value是统计此项出现的次数
+   
+#print(a)
+f.close()
+
+print("---------------------------------------------")
+#print(a)
+
+
+
+#第三步：对频次进行升序和降序排序，分别放到两个列表中，列表的每个项是个元祖
+list_down = [] #降序
+list_down = sorted(a.items(), key=lambda e:e[1], reverse=True) #字典的items()函数返回的是一个列表，列表的每个元素是一个键和值组成的元组。返回的值同样是由元组组成的列表。
+
+list_up=[]  #升序
+list_up = sorted(a.items(), key=lambda e:e[1], reverse=False) #字典的items()函数返回的是一个列表，列表的每个元素是一个键和值组成的元组。返回的值同样是由元组组成的列表。
+
+
+#第四步：打印
+print("---------------------------------------------")
+print("Wordlist of Top 10")
+print(" word  freq*")
+print(" ----  ----")
+i=0
+for i in range(0,10): #打印list中出现最多的10个值
+    print(list_down[i])
+    i=i+1
+print("                                ")
+print("Wordlist of Last 10")
+print(" word  freq*")
+print(" ----  ----")
+i=0
+for i in range(0,10): #打印list中出现最少的10个值
+    print(list_up[i])
+    i=i+1
