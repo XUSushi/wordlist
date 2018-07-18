@@ -2,7 +2,7 @@
 """
 Created on Tue Apr 10 09:40:38 2018
 
-@author: 许某某
+@author: 许逸文
 """
 
 from nltk.corpus import PlaintextCorpusReader
