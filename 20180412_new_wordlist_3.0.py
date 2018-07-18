@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Apr 10 09:40:38 2018
+Created on Tue Apr 12 10:20:12 2018
 
-@author: 许某某
+@author: 许逸文
 """
 
 from nltk.corpus import PlaintextCorpusReader
